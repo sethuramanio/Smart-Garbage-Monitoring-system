@@ -1,0 +1,77 @@
+﻿body {
+    font-family: "Lato", sans-serif;
+    background-color: #cccccc;
+    
+  
+}
+.page-bg {
+    background: url("../images/images.jpg");
+    -moz-filter: blur(10px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+
+}
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+     
+    }
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 20px;
+        background-color: blue;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+.heading {
+    text-align: center;
+    font-family: Oswald;
+    
+    background-repeat: no-repeat, repeat;
+}
+#img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
+}

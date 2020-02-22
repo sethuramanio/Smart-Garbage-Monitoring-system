@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions Service</title>
+    <style>
+         /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+         #map {
+             height: 500px;
+         }
+         /* Optional: Makes the sample page fill the window. */
+         html, body {
+             height: 100%;
+             margin: 0;
+             padding: 0;
+         }
+
+         #floating-panel {
+             position: absolute;
+             top: 10px;
+             left: 25%;
+             z-index: 5;
+             background-color: #fff;
+             padding: 5px;
+             border: 1px solid #999;
+             text-align: center;
+             font-family: 'Roboto','sans-serif';
+             line-height: 30px;
+             padding-left: 10px;
+         }
+
+         body {
+             font-family: "Lato", sans-serif;
+             background-color: #cccccc;
+         }
+
+         .page-bg {
+             background: url("/images/images.jpg");
+             -moz-filter: blur(10px);
+             -o-filter: blur(3px);
+             -ms-filter: blur(3px);
+             filter: blur(3px);
+             position: fixed;
+             width: 100%;
+             height: 100%;
+             top: 0;
+             left: 0;
+             z-index: -1;
+         }
+
+         .sidenav {
+             height: 100%;
+             width: 0;
+             position: fixed;
+             z-index: 1;
+             top: 0;
+             left: 0;
+             background-color: #111;
+             overflow-x: hidden;
+             transition: 0.5s;
+             padding-top: 60px;
+         }
+
+             .sidenav a {
+                 padding: 8px 8px 8px 32px;
+                 text-decoration: none;
+                 font-size: 25px;
+                 color: white;
+                 display: block;
+                 transition: 0.3s;
+             }
+
+                 .sidenav a:hover {
+                     color: #f1f1f1;
+                 }
+
+             .sidenav .closebtn {
+                 position: absolute;
+                 top: 0;
+                 right: 25px;
+                 font-size: 36px;
+                 margin-left: 50px;
+             }
+
+         @media screen and (max-height: 450px) {
+             .sidenav {
+                 padding-top: 20px;
+                 background-color: blue;
+             }
+
+                 .sidenav a {
+                     font-size: 18px;
+                 }
+         }
+
+         .heading {
+             text-align: center;
+             font-family: Oswald;
+             background-repeat: no-repeat, repeat;
+         }
+
+         #img {
+             max-width: 100%;
+             height: auto;
+             width: auto\9;
+         }
+    </style>
+</head>
+<body>
+    <header>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    </header>
+    <div id="floating-panel">
+        
+        <button type="button" id="sub">Submit</button>
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="remoteaccess.html">Bot</a>
+        <a href="direction.html">navgation</a>
+
+    </div>
+
+
+    <div id="map"></div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+            directionsService.route({
+                origin: 'vit chennai',
+                destination: 'adyar',
+                travelMode: 'DRIVING'
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+
+        }
+        function calculateAndDisplayRoute1(directionsService, directionsDisplay) {
+            directionsService.route({
+                origin: 'adyar',
+                destination: 'annanagar',
+                travelMode: 'DRIVING'
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+
+            //document.getElementById('start').addEventListener('change', onChangeHandler);
+            //document.getElementById('end').addEventListener('change', onChangeHandler);
+
+        }
+        function initMap() {
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: { lat: 12.841456, lng: 80.154060 }
+            });
+            directionsDisplay.setMap(map);
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+            var onChangeHandler = function () {
+                calculateAndDisplayRoute1(directionsService, directionsDisplay);
+            };
+            
+            document.getElementById('sub').addEventListener('click', onChangeHandler);
+
+
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGNdWyBZDqjKNdAE1X7XalWXpODY8XsbM&callback=initMap">
+    </script>
+</body>
+</html>
